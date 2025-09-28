@@ -1,14 +1,12 @@
 {
   "name": "visitor-counter",
   "version": "1.0.0",
-  "description": "A simple visitor counter website.",
-  "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "dev": "vercel dev"
   },
   "dependencies": {
-    "express": "^4.19.2",
-    "mongodb": "^6.20.0",
-    "vercel": "^48.1.6"
+    "@supabase/supabase-js": "^2.0",
+    "cookie": "^0.5.0"
   }
 }
+
