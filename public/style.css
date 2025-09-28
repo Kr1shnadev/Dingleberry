@@ -1,0 +1,86 @@
+/* Import Google Font for 'Indie Flower' for the handwritten look */
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+body {
+    font-family: 'Indie Flower', cursive; /* Apply the handwritten font */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    /* Dotted background matching the image */
+    background-color: #fff4c8; /* Light yellow background */
+    background-image: radial-gradient(#20201f 1.3px, transparent 0);
+    background-size: 20px 20px;
+    color: #333; /* Default text color */
+}
+
+.container {
+    text-align: center;
+    /* No explicit background for the container itself, let body background show */
+    padding: 40px 20px; /* Adjust padding as needed */
+    width: 90%;
+    max-width: 500px; /* Adjust max-width as needed */
+}
+
+.label {
+    font-size: 3.5rem; /* Larger font size for labels */
+    color: #555; /* Darker gray for labels */
+    margin-bottom: 5px;
+    line-height: 1.2;
+}
+.display-label {
+    font-size: 2rem; /* Larger font size for labels */
+    color: #555; /* Darker gray for labels */
+    margin-bottom: 5px;
+    line-height: 1.2;
+}
+
+.visitor-name {
+    font-size: 3.5rem; /* Large size for the name */
+    color: #0097b2; /* Blue color for the name */
+    margin-top: 0;
+    margin-bottom: 60px; /* Space after name */
+    min-height: 60px; /* Ensure consistent height even when empty */
+    line-height: 1;
+}
+
+.input-area {
+    margin-top: 40px; /* Space before input area */
+    margin-bottom: 40px; /* Space after input area */
+    display: flex;
+    flex-direction: column; /* Stack label and input */
+    align-items: center;
+    gap: 10px; /* Space between label and input */
+}
+
+#name-input {
+    width: 300px; /* Fixed width for the input field */
+    padding: 10px 15px;
+    border: 2px solid #555; /* Border color matching image */
+    border-radius: 10px; /* Rounded corners for the input */
+    font-family: 'Indie Flower', cursive; /* Apply font to input */
+    font-size: 1.8rem; /* Larger font for input text */
+    text-align: center; /* Center placeholder/typed text */
+    outline: none; /* Remove outline on focus */
+    background-color: transparent; /* Transparent background */
+    box-shadow: none; /* No box shadow */
+    color: #0097b2 /* Input text color */
+}
+
+/* Placeholder style */
+#name-input::placeholder {
+    color: rgba(74, 144, 226, 0.5); /* Lighter blue for placeholder */
+}
+
+.total-label {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.total-count {
+    font-size: 4rem; /* Even larger for the total count */
+    color: #0097b2; /* Blue color for the count */
+    margin-top: 0;
+    line-height: 1;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Visitor Site</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container">
+        <p class="label">LAST VISITOR</p>
+        <h2 id="latest-name" class="visitor-name">(NO ONE YET)</h2>
+
+        <div class="input-area">
+            <p class="display-label">DISPLAY YOUR NAME</p>
+            <input type="text" id="name-input" placeholder="" maxlength="50">
+        </div>
+        
+        <p class="label total-label">TOTAL VISITORS</p>
+        <h2 id="visitor-count" class="total-count">0</h2>
+    </div>
+
+    <script>
+        // --- THIS PART IS THE SAME AS BEFORE ---
+        const countElement = document.getElementById('visitor-count');
+        const nameElement = document.getElementById('latest-name');
+        const nameInput = document.getElementById('name-input');
+
+        async function getInitialData() {
+            try {
+                const response = await fetch('/api/data');
+                const data = await response.json();
+                countElement.textContent = data.count;
+                nameElement.textContent = data.latestName ? `${data.latestName.toUpperCase()}` : 'NO ONE YET';
+            } catch (error) {
+                console.error('Failed to fetch initial data:', error);
+                countElement.textContent = 'ERROR';
+                nameElement.textContent = '(ERROR)';
+            }
+        }
+
+        async function submitName() {
+            const name = nameInput.value.trim();
+            if (!name) {
+                nameInput.value = '';
+                return; 
+            }
+            try {
+                const response = await fetch('/api/name', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name: name }),
+                });
+                const result = await response.json();
+                if (result.success) {
+                    nameElement.textContent = `(${result.latestName.toUpperCase()})`;
+                    nameInput.value = '';
+                } else {
+                    alert('Failed to submit name.');
+                }
+            } catch (error) {
+                console.error('Failed to submit name:', error);
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', getInitialData);
+        nameInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                submitName();
+            }
+        });
+        
+        // --- NEW --- This code makes the background interactive
+        document.addEventListener('mousemove', (e) => {
+            const { clientX, clientY } = e;
+            const { innerWidth, innerHeight } = window;
+
+            // Calculate the movement based on mouse position from the center
+            const xPos = (clientX / innerWidth - 0.5) * -40; // -40 is the intensity
+            const yPos = (clientY / innerHeight - 0.5) * -40;
+
+            document.body.style.backgroundPosition = `${xPos}px ${yPos}px`;
+        });
+    </script>
+</body>
+</html>
